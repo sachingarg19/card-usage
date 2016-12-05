@@ -2,6 +2,7 @@ package com.capitolone.cua.bo;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -19,16 +20,28 @@ public class CardUsageBOImpl implements CardUsageBO {
 	@Autowired
 	CardUsageUtil cardUsageUtil;
 
-	public Map<String, UserExpenditure> getMonthlyExpenditureOfUser(ServiceResponse response) {
+	public Map<String, UserExpenditure> getMonthlyExpenditureOfUser(ServiceResponse response, Set<String> ignoreMerchant) {
 		SortedMap<String, UserExpenditure> monthlyTransactionMap = new TreeMap<String, UserExpenditure>();
 		if (response != null) {
 			Iterator itr = (Iterator) response.getTransactions().iterator();
 			while (itr.hasNext()) {
 				Transactions transaction = (Transactions) itr.next();
-				addTransaction(monthlyTransactionMap, transaction);
+				if(ignoreMerchant != null && ignoreMerchant.size()>0){
+					Boolean flag = Boolean.FALSE;
+					for (String merchantName : ignoreMerchant) {
+						if(merchantName.equalsIgnoreCase(transaction.getMerchant())){
+							flag = true;
+						}
+						
+					}
+					if(!flag){
+						addTransaction(monthlyTransactionMap, transaction);
+					}
+				} else {
+					addTransaction(monthlyTransactionMap, transaction);
+				}
 			}
 			addAverage(monthlyTransactionMap);
-
 		}
 		return monthlyTransactionMap;
 	}

@@ -1,6 +1,8 @@
 package com.capitolone.cua.controller;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.core.Response;
 
@@ -20,7 +22,15 @@ public class UsageAnalyticController {
 	
 	@RequestMapping("/usageAnalytic")
 	public Map<String,UserExpenditure> getUsageAnalytic(){
-		return cardUsageService.getMonthlyMoneyUsageOfUser();
+		return cardUsageService.getMonthlyMoneyUsageOfUser(null);
+	}
+	
+	@RequestMapping("/usageAnalytic-ignoreDonuts")
+	public Map<String, UserExpenditure> getUsageAnalyticIgnoreMerchant(){
+		Set<String> ignoreMerchant = new HashSet<String>();
+		ignoreMerchant.add("Krispy Kreme Donuts");
+		ignoreMerchant.add("DUNKIN #336784");
+		return cardUsageService.getMonthlyMoneyUsageOfUser(ignoreMerchant);
 	}
 
 }

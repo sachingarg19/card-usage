@@ -2,6 +2,7 @@ package com.capitolone.cua.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.core.Response;
 
@@ -23,10 +24,10 @@ public class CardUsageServiceImpl implements CardUsageService {
 	@Autowired
 	private CardUsageBO cardUsageBO;
 	
-	public Map<String,UserExpenditure> getMonthlyMoneyUsageOfUser() {
+	public Map<String,UserExpenditure> getMonthlyMoneyUsageOfUser(Set<String> ignoreMerchant) {
 		ServiceResponse response = coServiceClient.getTransactions(ServiceResponse.class);
 		if(response.getError().equalsIgnoreCase("no-error")){
-			return cardUsageBO.getMonthlyExpenditureOfUser(response);
+			return cardUsageBO.getMonthlyExpenditureOfUser(response,ignoreMerchant);
 		}
 		return null;
 	}

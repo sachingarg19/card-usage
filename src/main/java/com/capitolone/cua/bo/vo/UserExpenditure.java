@@ -1,5 +1,8 @@
 package com.capitolone.cua.bo.vo;
 
+import java.text.NumberFormat;
+
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserExpenditure {
@@ -22,5 +25,15 @@ public class UserExpenditure {
 		this.income = income;
 	}
 	
+	@JsonGetter("spent")
+	public String getSpentStr() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		return formatter.format(spent);
+	}
 	
+	@JsonGetter("income")
+    public String getIncomeStr() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        return formatter.format(income);
+    }
 }

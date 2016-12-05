@@ -25,11 +25,14 @@ Installation Steps
 
 5. Launch Postman or browser and hit below URLs
 
-6. Use "http://localhost:8080/usageAnalytic" to see the results.
+
+Solutions:
+
+1. Use "http://localhost:8080/usageAnalytic" to see the results.
    Feature: 
    Results are displayed as a Json string on the browser. This endpoint is to display json string which shows monthly transactions of    a user and average expenditure and income
    
-7. Use "http://localhost:8080/usageAnalytic-ignoreDonuts" to see the results. 
+2. Use "http://localhost:8080/usageAnalytic-ignoreDonuts" to see the results. 
    Feature:
    Results are displayed as a json string on the browser. This endpoint is to display result where transactions for specific        merchant("Krispy Kreme Donuts” or “DUNKIN #336784”) is ignored. 
 

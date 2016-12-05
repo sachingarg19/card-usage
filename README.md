@@ -16,14 +16,22 @@ https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddom
 Installation Steps
 
 1. Goto Terminal. 
-2. Do git clone https://github.com/prashantksingh10/card-usage.git
-3. Do cd "card-usage"
+
+2. Do "git clone https://github.com/prashantksingh10/card-usage.git"
+
+3. Do "cd card-usage"
+
 4. Execute "mvn clean install spring-boot:run" 
-5. Launch Postman or browser and hit below URLs 
-6. Use http://localhost:8080/usageAnalytic to see the results. This URl is to display result for the first problem. Where Users monthly transactions are displayed in the required format.
-7. Use http://localhost:8080/usageAnalytic-ignoreDonuts to see the results. This URl is to display result where transactions for specific merchant is ignored. 
 
+5. Launch Postman or browser and hit below URLs
 
+6. Use http://localhost:8080/usageAnalytic to see the results.
+   Feature: 
+   Results are displayed as a Json string on the browser. This endpoint is to display json string which shows monthly transactions of    a user and average expenditure and income
+   
+7. Use http://localhost:8080/usageAnalytic-ignoreDonuts to see the results. 
+   Feature:
+   Results are displayed as a json string on the browser. This endpoint is to display result where transactions for specific        merchant("Krispy Kreme Donuts” or “DUNKIN #336784”) is ignored. 
 
 
 

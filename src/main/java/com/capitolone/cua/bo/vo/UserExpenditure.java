@@ -1,5 +1,6 @@
 package com.capitolone.cua.bo.vo;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -27,13 +28,13 @@ public class UserExpenditure {
 	
 	@JsonGetter("spent")
 	public String getSpentStr() {
-		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		return formatter.format(spent);
+		DecimalFormat dFormat = new DecimalFormat("#.00");
+		return "$"+dFormat.format(spent*(-1));
 	}
 	
 	@JsonGetter("income")
     public String getIncomeStr() {
-		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        return formatter.format(income);
+		DecimalFormat dFormat = new DecimalFormat("#.00");
+        return "$"+dFormat.format(income);
     }
 }
